@@ -1,0 +1,7 @@
+<h1>vista de competencia</h1>
+
+<div *ngFor="let persona of personas">
+    <app-persona [persona]="persona" (delete)="deleteItem($event)"></app-persona>
+  </div>
+
+
