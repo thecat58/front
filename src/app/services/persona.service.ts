@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PersonaModule } from '../models/persona/persona';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PersonaModel } from '../models/persona/persona.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class PersonaService {
    
   urls: string = 'http://127.0.0.1:8000/api/personas/'
   traerPersonas() {
-    return this._httpClient.get<PersonaModule[]>(this.urls);
+    return this._httpClient.get<PersonaModel[]>(this.urls);
   }
 
  
@@ -25,9 +25,13 @@ export class PersonaService {
   }
 
 
-  ingressarPersona(persona:PersonaModule){
-    return this._httpClient.post<PersonaModule>(this.urls,persona)
+  ingressarPersona(persona:PersonaModel){
+    return this._httpClient.post<PersonaModel>(this.urls,persona)
   }
-  
+  actualizarPersona(persona:PersonaModel){
+    console.log(persona.id)
+    const url = this.urls+persona.id;
+    return this._httpClient.put<PersonaModel>(url,persona);
+  }
 
 }

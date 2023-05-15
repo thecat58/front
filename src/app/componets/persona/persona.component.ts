@@ -1,5 +1,6 @@
 import { Component, Input, Output,EventEmitter } from "@angular/core"; 
-import { PersonaModule } from 'src/app/models/persona/persona';
+import { PersonaModel } from "src/app/models/persona/persona.model";
+
 
 @Component({
   selector: 'app-persona',
@@ -8,7 +9,7 @@ import { PersonaModule } from 'src/app/models/persona/persona';
 })
 export class PersonaComponent {
 
-  @Input() persona: PersonaModule = {
+  @Input() persona: PersonaModel = {
     id:0,
    nombre:'',
    codigo:0,
@@ -16,14 +17,17 @@ export class PersonaComponent {
     
   } ;
   @Output() delete:EventEmitter<number>=new EventEmitter();
-  
-  montrrIdPersona(){
-    console.log(this.persona.id)
+  @Output() update = new EventEmitter<PersonaModel>();
+
+  updateItem(){
+    this.update.emit(this.persona);
   }
   deleteItem():void{
     this.delete.emit(this.persona.id);
   }
  
+  
+
 
 }
 

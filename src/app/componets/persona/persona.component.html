@@ -1,9 +1,9 @@
 <p>
-    {{persona.id}}
-    {{persona.nombre}}
-    {{persona.codigo}}
-    {{persona.descripcion}}
-
+    Id: {{ persona.id}}
+    Nombre: {{persona.nombre}}
+    Codigo: {{persona.codigo}}
+    Descripcion: {{persona.descripcion}}
 </p>
 
 <button (click)="deleteItem()" >eliminar </button>
+<button (click)="updateItem()">Actualizar</button>

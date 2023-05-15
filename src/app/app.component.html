@@ -1,13 +1,26 @@
 <h1>Datos de la competencia</h1> 
 ingresa el nombre <br>
-<input type="text" [(ngModel)]='nombre'><br>
+<input type="text"  [(ngModel)]='nombre'><br>
 ingresa el codigo <br>
 <input type="text" [(ngModel)]='codigo'><br>
 ingresa la descripcion <br>
-<input type="text" [(ngModel)]='descripcion'><br>
+<input type="text"  [(ngModel)]='descripcion'><br>
 <br>
-<button (click)="postPersona(personas)" >añadir</button>
+<button 
+    *ngIf="guardar else botonActualizar" 
+    (click)="postPersona()">
+    Añadir
+</button>
+<ng-template #botonActualizar>
+    <button 
+        (click)="putPersona(persona)">
+        Actualizar
+    </button>
+</ng-template>
 
-<app-persona-list [personas]="personas"  (delete)="deletePersona($event)">
+<app-persona-list 
+    [personas]="personas"  
+    (delete)="deletePersona($event)"
+    (update)="editarPersona($event)">
 </app-persona-list>
 
